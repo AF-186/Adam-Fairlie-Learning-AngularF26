@@ -5,10 +5,32 @@
   <meta charset="UTF-8" />
   <title>Learning Angular</title>
 </head>
-
+<!-- Add a HTML template to fit the Fish class -->
+<!-- Unsure what that meant, so I made a table -->
 <body>
-<h1>Hello, my name is {{ name }}</h1>
-<p>It is currently week {{ week }}</p>
+
+  <div class="container">
+    <h2>Fish List</h2>
+    @for (fish of fishList; track fish.id) {
+      <div class="fish-card">
+        <h3>{{ fish.name }}</h3>
+        <p>Found in: {{ fish.location }}</p>
+        @if (fish.weather != null) {
+          <p>During Weather: {{ fish.weather }}</p>
+        } @else {
+          <p>All Weather</p>
+        }
+        @if (fish.time != null) {
+          <p>At Time: {{ fish.time }}</p>
+        } @else {
+          <p>Any Time</p>
+        }
+      </div>
+    } @empty {
+      <p>No fish have been added yet...</p>
+    }
+  </div>
+
 </body>
 
 </html>

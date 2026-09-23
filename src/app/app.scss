@@ -1,0 +1,27 @@
+.container {
+  text-align: center;
+}
+
+.fish-card {
+  background-color: #d8e6fc;
+  display: inline-block;
+  margin: 20px;
+  width: 200px;
+  text-align: center;
+  border: 2px solid black;
+}
+
+.fish-card h3 {
+  margin-top: 0;
+  padding: 10px 0;
+  background-color: #559dd8;
+  border-bottom: 2px solid black;
+}
+
+@media screen and (max-width: 761px) {
+  /*
+  761px is the width at which the cards will be displayed 2x3.
+  I remember how to make at-media rules,
+  But I couldn't think of anything to add yet
+  */
+}
