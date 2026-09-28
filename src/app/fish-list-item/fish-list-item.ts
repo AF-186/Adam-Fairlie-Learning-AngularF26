@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, input } from '@angular/core';
+import {Fish} from '../shared/models/fish';
 
 @Component({
   imports: [],
@@ -6,4 +7,6 @@ import { Component } from '@angular/core';
   styleUrl: './fish-list-item.scss',
   templateUrl: './fish-list-item.html',
 })
-export class FishListItem {}
+export class FishListItem {
+  testProperty = input.required<Fish>();
+}
