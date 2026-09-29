@@ -1,9 +1,8 @@
-<div class="container">
-@for (fish of fishList; track fish.id) {
-  <app-fish-list-item
-    [fish] = "fish"
-    (opened) = "onFishOpened($event)"/>
+<h1>Fish List</h1>
+@for (fish of fishList; track fish.id; let e = $even, count = $count) {
+  <div class="container" [class.even] = "e">
+    <app-fish-list-item [fish] = "fish" (opened) = "onFishOpened($event)"/>
+  </div>
 } @empty {
   <p>No fish have been caught yet...</p>
 }
-</div>
