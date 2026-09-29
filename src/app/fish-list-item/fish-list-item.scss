@@ -1,3 +1,15 @@
 .fish-container {
   border: 2px solid black;
+  background-color: #d8e6fc;
+  display: inline-block;
+  margin: 20px;
+  width: 200px;
+  text-align: center;
+}
+
+.fish-container h2 {
+  margin-top: 0;
+  padding: 10px 0;
+  background-color: #559dd8;
+  border-bottom: 2px solid black;
 }
