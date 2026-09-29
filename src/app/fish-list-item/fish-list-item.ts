@@ -1,4 +1,4 @@
-import { Component, input } from '@angular/core';
+import { Component, input, output } from '@angular/core';
 import {Fish} from '../shared/models/fish';
 
 @Component({
@@ -9,4 +9,11 @@ import {Fish} from '../shared/models/fish';
 })
 export class FishListItem {
   fish = input.required<Fish>();
+  expanded = false;
+  opened = output<Fish>();
+
+  toggle(): void {
+    this.expanded = !this.expanded;
+    this.opened.emit(this.fish());
+  }
 }

@@ -1,25 +1,27 @@
-<div class="fish-container">
+<div class="fish-container" (click)="toggle()">
   <h2>{{ fish().name }}</h2>
-  <p>Found in: {{ fish().location }}</p>
-  @if (fish().weather != null) {
-    <p>During Weather: {{ fish().weather }}
-    @switch (fish().weather) {
-      @case ('Rain') {
-        🌧
+  @if (expanded) {
+    <p>Found in: {{ fish().location }}</p>
+    @if (fish().weather != null) {
+      <p>During Weather: {{ fish().weather }}
+      @switch (fish().weather) {
+        @case ('Rain') {
+          <span class="badge">🌧</span>
+        }
+        @case ('Thunder') {
+          ⛈
+        }
+        @default {}
       }
-      @case ('Thunder') {
-        ⛈
-      }
-      @default {}
+      </p>
+    } @else {
+      <p>All Weather</p>
     }
-    </p>
-  } @else {
-    <p>All Weather</p>
-  }
-  @if (fish().time != null) {
-    <p>At Time: {{ fish().time }}</p>
-  } @else {
-    <p>Any Time</p>
+    @if (fish().time != null) {
+      <p>At Time: {{ fish().time }}</p>
+    } @else {
+      <p>Any Time</p>
+    }
   }
 </div>
 
