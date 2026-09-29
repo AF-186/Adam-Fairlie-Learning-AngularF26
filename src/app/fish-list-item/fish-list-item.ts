@@ -8,5 +8,5 @@ import {Fish} from '../shared/models/fish';
   templateUrl: './fish-list-item.html',
 })
 export class FishListItem {
-  testProperty = input.required<Fish>();
+  fish = input.required<Fish>();
 }

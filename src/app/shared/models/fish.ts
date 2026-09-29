@@ -5,3 +5,8 @@ export interface Fish {
   weather?: string;
   time?: string | number;
 }
+/*
+To add later:
+Split 'time' into start / end time
+Preferred bait
+*/
