@@ -1,4 +1,5 @@
 <h1>Fish List</h1>
+<button (click)="placeholder()">Add Fish</button>
 @for (fish of fishList(); track fish.id; let e = $even) {
   <div class="container" [class.even] = "e">
     <app-fish-list-item [fish] = "fish" (opened) = "onFishOpened($event)"/>
