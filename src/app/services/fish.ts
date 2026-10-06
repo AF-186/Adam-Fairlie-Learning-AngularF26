@@ -13,4 +13,12 @@ export class FishService {
   ]);
 
   fishList = this.fishes.asReadonly();
+
+  fishCount = computed(() => this.fishes().length);
+  place2Fish = computed(() => this.fishes().filter(f => f.location == "Place 2"))
+
+  addFish(newFish:Fish): void {
+    this.fishes.update((list) => [...list, newFish]);
+  }
+
 }

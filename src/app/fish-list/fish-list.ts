@@ -17,6 +17,7 @@ export class FishList {
 
   private fishService = inject(FishService);
   fishList = this.fishService.fishList;
+  place2Fish = this.fishService.place2Fish;
 
   onFishOpened(fish: Fish) {
     console.warn("Clicked entry", fish.id, ": ", fish.name)

@@ -6,3 +6,16 @@
 } @empty {
   <p>No fish have been caught yet...</p>
 }
+
+<hr/>
+
+<h2>Fish from <strong>Place 2</strong></h2>
+
+<h1>Fish List</h1>
+@for (fish of place2Fish(); track fish.id; let e = $even) {
+  <div class="container" [class.even] = "e">
+    <app-fish-list-item [fish] = "fish" (opened) = "onFishOpened($event)"/>
+  </div>
+} @empty {
+  <p>No <strong>Place 2</strong> fish have been caught yet...</p>
+}
