@@ -1,5 +1,6 @@
-import { computed, Service, signal } from '@angular/core';
+import { computed, inject, Service, signal } from '@angular/core';
 import { Fish } from '../shared/models/fish';
+import { FISH_CONFIG } from '../shared/fish-config';
 
 @Service()
 export class FishService {
@@ -12,13 +13,14 @@ export class FishService {
     { id: 6, name: 'Fish 6', location: 'Place 4' },
   ]);
 
+  private config = inject(FISH_CONFIG);
+
   fishList = this.fishes.asReadonly();
 
   fishCount = computed(() => this.fishes().length);
-  place2Fish = computed(() => this.fishes().filter(f => f.location == "Place 2"))
-  place2FishCount = computed(() => this.place2Fish().length)
-  // I wouldn't say this is a trivial duplicate
-  // But it was the given example, so I don't expect a bonus mark
+  // place2Fish = computed(() => this.fishes().filter(f => f.location == "Place 2"));
+  place2Fish = computed(() => this.fishes().filter(f => f.location == this.config.defaultLocation));
+  place2FishCount = computed(() => this.place2Fish().length);
 
   addFish(newFish:Fish): void {
     this.fishes.update((list) => [...list, newFish]);
