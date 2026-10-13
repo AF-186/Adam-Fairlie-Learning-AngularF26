@@ -23,7 +23,7 @@ export class FishList {
 
   onFishOpened(fish: Fish) {
     console.warn("Clicked entry", fish.id, ": ", fish.name)
-    this.fishService.removeFish(fish.id)
+    //this.fishService.removeFish(fish.id)
   }
   // Not sure why Assignment 4 asked us to use the output from Assignment 3 for removal
   // That signal was for opening the cards. Now you can't do that
