@@ -2,10 +2,12 @@ import { Component, inject, effect } from '@angular/core';
 import { Fish } from '../shared/models/fish';
 import { FishListItem } from '../fish-list-item/fish-list-item';
 import { FishService } from '../services/fish';
+import {RouterLink} from '@angular/router';
 
 @Component({
   imports: [
-    FishListItem
+    FishListItem,
+    RouterLink
   ],
   selector: 'app-fish-list',
   styleUrl: './fish-list.scss',
