@@ -18,7 +18,7 @@ export class FishForm {
 
   id = input<number>();
 
-  protected isEditMode = computed(() => this.id() !== undefined);
+  //protected isEditMode = computed(() => this.id() !== undefined);
 
   fishForm = this.fb.nonNullable.group({
     name: ['', [Validators.required, Validators.minLength(3)]], // Step 11a, 11b
@@ -31,12 +31,16 @@ export class FishForm {
 
     const formValue = this.fishForm.getRawValue();
 
-    const id = this.isEditMode() ? Number(this.id()) : this.service.nextId();
+    // const id = this.isEditMode() ? Number(this.id()) : this.service.nextId();
+    //
+    // if (this.isEditMode()) {
+    //
+    // } else {
+    //   this.service.addFish({id, ...formValue});
+    // }
 
-    if (this.isEditMode()) {
+     const id = this.service.nextId();
+     this.service.addFish({id, ...formValue});
 
-    } else {
-      this.service.addFish({id, ...formValue});
-    }
   }
 }

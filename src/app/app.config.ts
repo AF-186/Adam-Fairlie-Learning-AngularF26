@@ -14,6 +14,6 @@ export const appConfig: ApplicationConfig = {
       apiBaseUrl: 'https://placeholder.example.com/api',
       defaultLocation: 'Place 2',
     } },
-    { provide: FishService, useClass: MockFishService }
+    { provide: FishService, useClass: FishService } // MockFishService
   ]
 };
