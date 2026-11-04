@@ -4,7 +4,8 @@ import { FishDetail } from './fish-detail/fish-detail';
 import { FishForm } from './fish-form/fish-form';
 
 export const routes: Routes = [
-  { path: '', component: FishList },
+  { path: '', redirectTo: '/fish', pathMatch: 'full' },
+  { path: 'fish', component: FishList },
   { path: 'fish/:id', component: FishDetail },
   { path: 'form', component: FishForm },
 ];

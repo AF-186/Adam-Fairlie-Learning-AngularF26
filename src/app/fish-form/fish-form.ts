@@ -41,6 +41,7 @@ export class FishForm {
 
      const id = this.service.nextId();
      this.service.addFish({id, ...formValue});
+     this.fishForm.reset();
 
   }
 }

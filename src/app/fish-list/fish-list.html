@@ -1,5 +1,6 @@
 <h2>Showing {{ fishCount() }} Fish</h2>
 <!-- <button (click)="addNewFish()">Add Fish</button> -->
+<div class="entry-grid">
 @for (fish of fishList(); track fish.id;) {
   <a [routerLink]="['/fish', fish.id]">
     {{ fish.name }}
@@ -8,6 +9,7 @@
 @empty {
   <p>No fish have been caught yet...</p>
 }
+</div>
 
 <!-- Removed at Part 1 of Assignment 6 -->
 <!--@for (fish of fishList(); track fish.id; let e = $even) {-->

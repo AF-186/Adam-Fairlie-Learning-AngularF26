@@ -8,6 +8,18 @@
   background-color: #d8e6fc;
 }
 
+.entry-grid {
+  display: grid;
+  grid-template-columns: auto auto auto auto auto auto;
+}
+// I would like the grid to be made up of as many specifically-sized columns as can fit on the viewport
+
 button {
   display: block;
+}
+
+a {
+  border: 1px solid black;
+  padding: 5px;
+  margin: 0 5px;
 }
