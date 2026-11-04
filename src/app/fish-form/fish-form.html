@@ -1,0 +1,19 @@
+<form [formGroup]="fishForm" (ngSubmit)="onSubmit()"> <!-- Step 12 -->
+  <input formControlName="name" placeholder="Name" />
+  <input formControlName="location" placeholder="Place" />
+
+  <select formControlName="weather">
+    <option value="">None</option>
+    <option value="Rain">Rain</option>
+    <option value="Thunder">Thunder</option>
+  </select>
+
+  <button type="submit" [disabled]="fishForm.invalid">Add Fish</button>
+
+  @if (fishForm.controls.name.hasError('minlength')) {
+    <p class="error">A name of minimum length 3 is required.</p>
+  }
+  @if (fishForm.controls.location.hasError('minlength')) {
+    <p class="error">A location of minimum length 3 is required.</p>
+  }
+</form>

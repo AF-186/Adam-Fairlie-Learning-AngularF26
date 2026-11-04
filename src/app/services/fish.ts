@@ -22,6 +22,10 @@ export class FishService {
   place2Fish = computed(() => this.fishes().filter(f => f.location == this.config.defaultLocation));
   place2FishCount = computed(() => this.place2Fish().length);
 
+  nextId() : number {
+    return Math.max(0, ...this.fishes().map((f) => f.id)) + 1;
+  }
+
   addFish(newFish:Fish): void {
     this.fishes.update((list) => [...list, newFish]);
   }
