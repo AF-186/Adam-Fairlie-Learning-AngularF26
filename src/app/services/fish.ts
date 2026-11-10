@@ -26,12 +26,24 @@ export class FishService {
     return Math.max(0, ...this.fishes().map((f) => f.id)) + 1;
   }
 
-  addFish(newFish:Fish): void {
+  addFish(newFish: Fish): void {
     this.fishes.update((list) => [...list, newFish]);
+  }
+
+  updateFish(target: Fish) : void {
+    this.fishes.update((list) => list.map((f) => (f.id === target.id ? target : f)));
   }
 
   removeFish(fishId: number): void {
     this.fishes.update(list => list.filter(fish => fish.id !== fishId))
+  }
+
+  getFish(id: number) : Fish | undefined {
+    return this.getById(id);
+  }
+
+  getById(id: number) : Fish | undefined {
+    return this.fishes().find((f) => f.id === id);
   }
 
 }

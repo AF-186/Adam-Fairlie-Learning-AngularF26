@@ -8,4 +8,5 @@ export const routes: Routes = [
   { path: 'fish', component: FishList },
   { path: 'fish/:id', component: FishDetail },
   { path: 'form', component: FishForm },
+  { path: 'fish/edit/:id', component: FishForm },
 ];

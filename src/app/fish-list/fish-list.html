@@ -2,9 +2,14 @@
 <!-- <button (click)="addNewFish()">Add Fish</button> -->
 <div class="entry-grid">
 @for (fish of fishList(); track fish.id;) {
-  <a [routerLink]="['/fish', fish.id]">
-    {{ fish.name }}
-  </a>
+  <div class="fish-item">
+    <a [routerLink]="['/fish', fish.id]">
+      {{ fish.name }}
+    </a>
+    <button [routerLink]="['/fish/edit', fish.id]">
+      Edit
+    </button>
+  </div>
 }
 @empty {
   <p>No fish have been caught yet...</p>

@@ -3,7 +3,7 @@ export interface Fish {
   name: string;
   location: string;
   weather?: string;
-  time?: string | number;
+  time?: string;
 }
 /*
 To add later:

@@ -1,6 +1,7 @@
 <form [formGroup]="fishForm" (ngSubmit)="onSubmit()"> <!-- Step 12 -->
   <input formControlName="name" placeholder="Name" />
   <input formControlName="location" placeholder="Place" />
+  <input formControlName="time" placeholder="" />
 
   <select formControlName="weather">
     <option value="">None</option>
@@ -8,7 +9,9 @@
     <option value="Thunder">Thunder</option>
   </select>
 
-  <button type="submit" [disabled]="fishForm.invalid">Add Fish</button>
+  <button type="submit" [disabled]="fishForm.invalid">
+    {{ isEditMode() ? "Save Edits" : "Add Fish" }}
+  </button>
 
   @if (fishForm.controls.name.hasError('minlength')) {
     <p class="error">A name of minimum length 3 is required.</p>
