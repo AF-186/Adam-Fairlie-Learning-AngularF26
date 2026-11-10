@@ -1,7 +1,7 @@
 <form [formGroup]="fishForm" (ngSubmit)="onSubmit()"> <!-- Step 12 -->
   <input formControlName="name" placeholder="Name" />
   <input formControlName="location" placeholder="Place" />
-  <input formControlName="time" placeholder="" />
+  <input formControlName="time" placeholder="00:00" />
 
   <select formControlName="weather">
     <option value="">None</option>

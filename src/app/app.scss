@@ -30,8 +30,15 @@ h1 {
   text-align: center;
 }
 
-a {
+nav {
+  vertical-align: center;
+  text-align: center;
+}
+
+nav * {
+  display: inline-block;
+  width: 15%;
+  height: 30px;
+  margin: 0 10px;
   border: 1px solid black;
-  padding: 5px;
-  margin: 0 5px;
 }

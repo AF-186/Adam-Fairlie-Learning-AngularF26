@@ -1,6 +1,10 @@
 <nav class="nav-bar">
   <a routerLink="/fish" routerLinkActive="active">List</a>
   <a routerLink="/form" routerLinkActive="active">Add</a>
+  <button (click)="authGuard.toggle()">Toggle Guard</button>
+  <p>
+    {{ authGuard.guardEnabled() ? "Off" : "On" }}
+  </p>
 </nav>
 <h1>Fish List</h1>
 <router-outlet/>
