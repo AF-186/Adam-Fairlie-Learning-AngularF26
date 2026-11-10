@@ -19,4 +19,8 @@
   @if (fishForm.controls.location.hasError('minlength')) {
     <p class="error">A location of minimum length 3 is required.</p>
   }
+  @if (fishForm.hasError('nameDiff')) {
+    <p class="error">Name and Location cannot match.</p>
+  }
+
 </form>

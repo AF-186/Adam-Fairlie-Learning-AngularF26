@@ -1,7 +1,16 @@
 import {Component, computed, effect, inject, input} from '@angular/core';
-import { FormControl, FormGroup, FormBuilder, Validators, ReactiveFormsModule } from '@angular/forms';
+import {
+  FormControl,
+  FormGroup,
+  FormBuilder,
+  Validators,
+  ReactiveFormsModule,
+  ValidatorFn,
+  AbstractControl, ValidationErrors
+} from '@angular/forms';
 import { FishService } from '../services/fish';
 import { Router } from '@angular/router';
+import {ValidationError} from '@angular/forms/signals';
 
 @Component({
   imports: [
@@ -17,16 +26,16 @@ export class FishForm {
   private router = inject(Router);
 
   id = input<number>();
-
   protected isEditMode = computed(() => this.id() !== undefined);
-  // Step 18
+  testReg = /@/i;
 
   protected fishForm = this.fb.nonNullable.group({
     name: ['', [Validators.required, Validators.minLength(3)]], // Step 11a, 11b
     location: ['', [Validators.required, Validators.minLength(3)]], // Step 11a
-    weather: [''],
+    weather: ['', noSymbolValidator()],
     time: [''],
-  });
+  },
+    { validators: crossFieldValidator });
 
   constructor() {
     effect(() => {
@@ -56,4 +65,25 @@ export class FishForm {
     this.fishForm.reset();
     this.router.navigate(['/fish', id]);
   }
+}
+export function noSymbolValidator() : ValidatorFn {
+  return (control: AbstractControl) : ValidationErrors | null => {
+    const value = control.value;
+
+    if (!value) {
+      return null;
+    }
+
+    const specialChar = /[^\w\s]/gi.test(value);
+    const noSpecialValid = !specialChar;
+    return !noSpecialValid ? { noSpecial: true } : null;
+  }
+}
+
+export const crossFieldValidator : ValidatorFn = (myTest: AbstractControl): ValidationErrors | null => {
+  const name = String(myTest.get('name')?.value ?? '').toLowerCase();
+  const location = String(myTest.get('location')?.value ?? '').toLowerCase();
+
+  let diff = name !== location;
+  return !diff ? { nameDiff: true }: null;
 }
