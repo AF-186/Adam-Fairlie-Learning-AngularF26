@@ -1,5 +1,9 @@
 # AdamFairlieLearningAngularF26
 
+This project makes use of [xivapi](https://v2.xivapi.com/api/docs#description/introduction)
+
+Example request: https://v2.xivapi.com/api/sheet/FishParameter?after=0&fields=FishingSpot.Item%5B%5D.Name
+
 This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 22.1.8.
 
 ## Development server

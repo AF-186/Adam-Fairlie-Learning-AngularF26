@@ -11,7 +11,7 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes, withComponentInputBinding()),
     { provide: FISH_CONFIG,
     useValue: {
-      apiBaseUrl: 'https://placeholder.example.com/api',
+      apiBaseUrl: 'https://v2.xivapi.com/api',
       defaultLocation: 'Place 2',
     } },
     { provide: FishService, useClass: FishService } // MockFishService
