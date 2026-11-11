@@ -25,10 +25,7 @@ export class FishList {
 
   onFishOpened(fish: Fish) {
     console.warn("Clicked entry", fish.id, ": ", fish.name)
-    //this.fishService.removeFish(fish.id)
   }
-  // Not sure why Assignment 4 asked us to use the output from Assignment 3 for removal
-  // That signal was for opening the cards. Now you can't do that
 
   addNewFish() {
     let fishNum
@@ -37,9 +34,8 @@ export class FishList {
     } else {
       fishNum = 1
     }
-    this.fishService.addFish( {id: fishNum, name: "Fish " + fishNum, location: "Place 2", weather: "Rain", time: "12:00"} )
+    this.fishService.addFish( {id: fishNum, name: "Fish " + fishNum, description: 'Aeiou', location: "Place 2", icon: '' } )
   }
-  // Now takes the id of the last fish in the list, and increments once
 
   constructor() {
     effect(() => {

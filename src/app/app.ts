@@ -1,6 +1,5 @@
 import {Component, inject, signal} from '@angular/core';
 import { RouterLink, RouterLinkActive, RouterOutlet } from '@angular/router';
-import { Fish } from './shared/models/fish';
 import {FishList} from './fish-list/fish-list';
 import {Auth} from './auth';
 

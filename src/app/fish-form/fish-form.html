@@ -1,13 +1,14 @@
 <form [formGroup]="fishForm" (ngSubmit)="onSubmit()"> <!-- Step 12 -->
   <input formControlName="name" placeholder="Name" />
+  <input formControlName="description" placeholder="Desc" />
   <input formControlName="location" placeholder="Place" />
-  <input formControlName="time" placeholder="00:00" />
+  <input formControlName="icon" placeholder="" />
 
-  <select formControlName="weather">
-    <option value="">None</option>
-    <option value="Rain">Rain</option>
-    <option value="Thunder">Thunder</option>
-  </select>
+<!--  <select formControlName="weather">-->
+<!--    <option value="">None</option>-->
+<!--    <option value="Rain">Rain</option>-->
+<!--    <option value="Thunder">Thunder</option>-->
+<!--  </select>-->
 
   <button type="submit" [disabled]="fishForm.invalid">
     {{ isEditMode() ? "Save Edits" : "Add Fish" }}

@@ -30,10 +30,10 @@ export class FishForm {
   testReg = /@/i;
 
   protected fishForm = this.fb.nonNullable.group({
-    name: ['', [Validators.required, Validators.minLength(3)]], // Step 11a, 11b
+    name: ['', [Validators.required, Validators.minLength(3), noSymbolValidator()]], // Step 11a, 11b
+    description: ['', Validators.required],
     location: ['', [Validators.required, Validators.minLength(3)]], // Step 11a
-    weather: ['', noSymbolValidator()],
-    time: [''],
+    icon: [''],
   },
     { validators: crossFieldValidator });
 
@@ -45,7 +45,7 @@ export class FishForm {
       }
       const fish = this.service.getFish(Number(id));
       if (fish) {
-        this.fishForm.patchValue({ ...fish, weather: fish.weather ?? '', time: fish.time ?? '' });
+        this.fishForm.patchValue({ ...fish });
       }
     });
   }

@@ -1,7 +1,10 @@
 <div class="fish-container" (click)="toggle()">
   <h2>{{ fish().name }}</h2>
-  @if (expanded) {
+  <!-- @if (expanded) { -->
     <p>Found in: {{ fish().location }}</p>
+    <p>Oops all data gone</p>
+
+  <!--
     @if (fish().weather != null) {
       <p>During Weather: {{ fish().weather }}
       @switch (fish().weather) {
@@ -24,6 +27,8 @@
     }
   }
   <button (click)="removeFishLI(fish().id)">Delete</button>
+  -->
+
 </div>
 
 <!-- Symbols for later: ☀ ☾ 🌧 ⛈ -->

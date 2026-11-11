@@ -5,12 +5,12 @@ import { FISH_CONFIG } from '../shared/fish-config';
 @Injectable()
 export class MockFishService {
   private fishes = signal<Fish[]>([
-    { id: 1, name: 'Fake 1', location: 'Place' },
-    { id: 2, name: 'Fake 2', location: 'Place' },
-    { id: 3, name: 'Fake 3', location: 'Place' },
-    { id: 4, name: 'Fake 4', location: 'Place' },
-    { id: 5, name: 'Fake 5', location: 'Place' },
-    { id: 6, name: 'Fake 6', location: 'Place' },
+    { id: 1, name: 'Fake 1', description: '', location: 'Place', icon: '' },
+    { id: 2, name: 'Fake 2', description: '', location: 'Place', icon: '' },
+    { id: 3, name: 'Fake 3', description: '', location: 'Place', icon: '' },
+    { id: 4, name: 'Fake 4', description: '', location: 'Place', icon: '' },
+    { id: 5, name: 'Fake 5', description: '', location: 'Place', icon: '' },
+    { id: 6, name: 'Fake 6', description: '', location: 'Place', icon: '' },
   ]);
 
   private config = inject(FISH_CONFIG);
@@ -18,7 +18,6 @@ export class MockFishService {
   fishList = this.fishes.asReadonly();
 
   fishCount = computed(() => this.fishes().length);
-  // place2Fish = computed(() => this.fishes().filter(f => f.location == "Place 2"));
   place2Fish = computed(() => this.fishes().filter(f => f.location == this.config.defaultLocation));
   place2FishCount = computed(() => this.place2Fish().length);
 

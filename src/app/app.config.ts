@@ -12,7 +12,7 @@ export const appConfig: ApplicationConfig = {
     { provide: FISH_CONFIG,
     useValue: {
       apiBaseUrl: 'https://v2.xivapi.com/api',
-      defaultLocation: 'Place 2',
+      defaultLocation: 'Place',
     } },
     { provide: FishService, useClass: FishService } // MockFishService
   ]

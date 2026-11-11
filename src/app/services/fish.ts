@@ -1,24 +1,35 @@
 import { computed, inject, Service, signal } from '@angular/core';
 import { Fish } from '../shared/models/fish';
 import { FISH_CONFIG } from '../shared/fish-config';
+import {httpResource} from '@angular/common/http';
 
 @Service()
 export class FishService {
   private fishes = signal<Fish[]>([
-    { id: 1, name: 'Fish 1', location: 'Place', weather: 'Rain', time: '22:00' },
-    { id: 2, name: 'Fish 2', location: 'Place' },
-    { id: 3, name: 'Fish 3', location: 'Place 2', time: '12:00' },
-    { id: 4, name: 'Fish 4', location: 'Place 2' },
-    { id: 5, name: 'Fish 5', location: 'Place 3', weather: 'Thunder'},
-    { id: 6, name: 'Fish 6', location: 'Place 4' },
+    { id: 1, name: 'Fish 1', description: 'Abc', location: 'Place', icon: '' },
+    { id: 2, name: 'Fish 2', description: '123', location: 'Place', icon: '' },
+    { id: 3, name: 'Fish 3', description: 'Def', location: 'Place', icon: '' },
+    { id: 4, name: 'Fish 4', description: '456', location: 'Place', icon: '' },
+    { id: 5, name: 'Fish 5', description: 'Ghi', location: 'Place', icon: '' },
+    { id: 6, name: 'Fish 6', description: '789', location: 'Place', icon: '' },
   ]);
 
   private config = inject(FISH_CONFIG);
+  private contentResource = httpResource<Fish[]>(() => ({
+    url: `${this.config.apiBaseUrl}/items`, // May not be /items
+    params: { limit: 20 },
+  }), { defaultValue: [] });
+
+  private contents = this.contentResource.value; // Writable, replaces signal()
+  contentList = computed(() =>
+  this.contentResource.error() ? [] : this.contents());
+  isLoading = this.contentResource.isLoading;
+  error = this.contentResource.error;
+
 
   fishList = this.fishes.asReadonly();
 
   fishCount = computed(() => this.fishes().length);
-  // place2Fish = computed(() => this.fishes().filter(f => f.location == "Place 2"));
   place2Fish = computed(() => this.fishes().filter(f => f.location == this.config.defaultLocation));
   place2FishCount = computed(() => this.place2Fish().length);
 
