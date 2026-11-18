@@ -15,17 +15,20 @@ export class FishService {
   ]);
 
   private config = inject(FISH_CONFIG);
-  private contentResource = httpResource<Fish[]>(() => ({
-    url: `${this.config.apiBaseUrl}/items`, // May not be /items
-    params: { limit: 20 },
-  }), { defaultValue: [] });
 
-  private contents = this.contentResource.value; // Writable, replaces signal()
-  contentList = computed(() =>
-  this.contentResource.error() ? [] : this.contents());
-  isLoading = this.contentResource.isLoading;
-  error = this.contentResource.error;
+  // private contentResource = httpResource<{ rows: [] }>(() => ({
+  //   url: `${this.config.apiBaseUrl}/sheet/FishParameter`,
+  //   params: { limit: 10 },
+  // }), { defaultValue: { rows: [] } });
 
+  // Remember to get all the parts of information separately
+  // Rather than one large complex query
+
+  // private contents = this.contentResource.value; // Writable, replaces signal()
+  // contentList = computed(() =>
+  // this.contentResource.error() ? [] : this.contents());
+  // isLoading = this.contentResource.isLoading;
+  // error = this.contentResource.error;
 
   fishList = this.fishes.asReadonly();
 
