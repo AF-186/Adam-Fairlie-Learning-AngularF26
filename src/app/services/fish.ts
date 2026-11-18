@@ -1,39 +1,32 @@
-import { computed, inject, Service, signal } from '@angular/core';
+import { computed, inject, Service } from '@angular/core';
 import { Fish } from '../shared/models/fish';
 import { FISH_CONFIG } from '../shared/fish-config';
-import {httpResource} from '@angular/common/http';
+import { XivApiService } from './xiv-api.service';
 
+/**
+ * Holds the fish list the rest of the app reads from.
+ */
 @Service()
 export class FishService {
-  private fishes = signal<Fish[]>([
-    { id: 1, name: 'Fish 1', description: 'Abc', location: 'Place', icon: '' },
-    { id: 2, name: 'Fish 2', description: '123', location: 'Place', icon: '' },
-    { id: 3, name: 'Fish 3', description: 'Def', location: 'Place', icon: '' },
-    { id: 4, name: 'Fish 4', description: '456', location: 'Place', icon: '' },
-    { id: 5, name: 'Fish 5', description: 'Ghi', location: 'Place', icon: '' },
-    { id: 6, name: 'Fish 6', description: '789', location: 'Place', icon: '' },
-  ]);
-
+  private api = inject(XivApiService);
   private config = inject(FISH_CONFIG);
 
-  // private contentResource = httpResource<{ rows: [] }>(() => ({
-  //   url: `${this.config.apiBaseUrl}/sheet/FishParameter`,
-  //   params: { limit: 10 },
-  // }), { defaultValue: { rows: [] } });
 
-  // Remember to get all the parts of information separately
-  // Rather than one large complex query
+  private fishResource = this.api.list(30);
 
-  // private contents = this.contentResource.value; // Writable, replaces signal()
-  // contentList = computed(() =>
-  // this.contentResource.error() ? [] : this.contents());
-  // isLoading = this.contentResource.isLoading;
-  // error = this.contentResource.error;
+  /**
+   * The value of an httpResource is writable, so this works like the old
+   * signal() did. add/update/remove below still work on it
+   */
+  private fishes = this.fishResource.value;
+  isLoading = this.fishResource.isLoading;
+  error = this.fishResource.error;
 
-  fishList = this.fishes.asReadonly();
+  /** If the request failed just show an empty list instead of dying */
+  fishList = computed(() => (this.error() ? [] : this.fishes()));
 
-  fishCount = computed(() => this.fishes().length);
-  place2Fish = computed(() => this.fishes().filter(f => f.location == this.config.defaultLocation));
+  fishCount = computed(() => this.fishList().length);
+  place2Fish = computed(() => this.fishList().filter(f => f.location == this.config.defaultLocation));
   place2FishCount = computed(() => this.place2Fish().length);
 
   nextId() : number {
@@ -51,13 +44,12 @@ export class FishService {
   removeFish(fishId: number): void {
     this.fishes.update(list => list.filter(fish => fish.id !== fishId))
   }
-
   getFish(id: number) : Fish | undefined {
     return this.getById(id);
   }
-
   getById(id: number) : Fish | undefined {
     return this.fishes().find((f) => f.id === id);
+  }reload(): void {
+    this.fishResource.reload();
   }
-
 }
